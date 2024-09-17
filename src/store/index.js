@@ -7,6 +7,9 @@ const state = proxy({
   isFullTexture: false,
   logoDecal: "./logo-code.png",
   fullDecal: "./logo-code.png",
+  customText: "",
+  customFontSize: "0.01",
+  customFontColor: "white",
 });
 
 export default state;

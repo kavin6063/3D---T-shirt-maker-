@@ -2,7 +2,7 @@ import React from "react";
 import { easing } from "maath";
 import { useSnapshot } from "valtio";
 import { useFrame } from "@react-three/fiber";
-import { Decal, useGLTF, useTexture } from "@react-three/drei";
+import { Decal, useGLTF, useTexture, Text } from "@react-three/drei";
 
 import state from "../store";
 
@@ -27,6 +27,7 @@ const Shirt = () => {
         material={materials.lambert1}
         material-roughness={1}
         dispose={null}
+        position={[0, 0, 0]}
       >
         {snap.isFullTexture && (
           <Decal
@@ -41,12 +42,26 @@ const Shirt = () => {
           <Decal
             position={[0, 0.04, 0.15]}
             rotation={[0, 0, 0]}
-            scale={0.15}
+            scale={0.2}
             map={logoTexture}
             anisotropy={16}
             depthTest={false}
             depthWrite={true}
           />
+        )}
+        {/* Custom text rendering */}
+        {snap.customText && (
+          <Text
+            position={[0, -0.07, 0.16]} // Adjust to fix the text position
+            rotation={[0, 0, 0]}
+            fontSize={snap.fontSize || 0.04} // Dynamic font size
+            color={snap.fontColor || "black"} // Dynamic font color
+            maxWidth={0.8}
+            anchorX="center" // Ensures text is centered horizontally
+            anchorY="middle" // Keeps the text anchored vertically
+          >
+            {snap.customText}
+          </Text>
         )}
       </mesh>
     </group>

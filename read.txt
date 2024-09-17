@@ -1,0 +1,3 @@
+custom text has bug need to fixed as we give any text that makeing the model move down side making the model mess.
+
+AI picker is  non functional for now need to work on it in near future.

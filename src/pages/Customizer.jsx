@@ -13,7 +13,9 @@ import {
   FilePicker,
   CustomButton,
   Tab,
+  CustomText,
 } from "../components";
+
 const Customizer = () => {
   const snap = useSnapshot(state);
 
@@ -33,6 +35,8 @@ const Customizer = () => {
         return <ColorPicker />;
       case "filepicker":
         return <FilePicker file={file} setFile={setFile} readFile={readFile} />;
+      case "CustomText":
+        return <CustomText />;
       case "AIPicker":
         return (
           <AIPicker
