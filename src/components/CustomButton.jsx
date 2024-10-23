@@ -3,7 +3,7 @@ import state from "../store";
 import React from "react";
 import { color } from "framer-motion";
 import { getContrastingColor } from "../config/helpers";
-
+import { FaDownload } from "react-icons/fa"; // Import download icon
 const CustomButton = ({ type, title, customStyles, handleClick }) => {
   const snap = useSnapshot(state);
 
@@ -19,15 +19,24 @@ const CustomButton = ({ type, title, customStyles, handleClick }) => {
         borderColor: snap.color,
         color: snap.color,
       };
+    } else if (type === "download") {
+      return {
+        backgroundColor: snap.color,
+        color: getContrastingColor(snap.color),
+      };
     }
   };
-
+  const iconColor = getContrastingColor(snap.color);
   return (
     <button
       className={`px-2 py-1.5 flex-1 rounded-md ${customStyles} `}
       style={generateStyle(type)}
       onClick={handleClick}
     >
+      {type === "download" && (
+        <FaDownload className="mr-2" style={{ color: iconColor }} />
+      )}
+      {/* Set icon color */}
       {title}
     </button>
   );

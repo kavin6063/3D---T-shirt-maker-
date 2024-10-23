@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import { useSnapshot } from "valtio";
 import config from "../config/config";
 import state from "../store";
+import { FaDownload } from "react-icons/fa"; // Importing download icon
 import { download, stylishShirt } from "../assets";
 import { downloadCanvasToImage, reader } from "../config/helpers";
 import { EditorTabs, FilterTabs, DecalTypes } from "../config/constants";
@@ -99,6 +100,10 @@ const Customizer = () => {
       setActiveEditorTab("");
     });
   };
+  // Function to handle download
+  const handleDownload = () => {
+    downloadCanvasToImage();
+  };
   return (
     <AnimatePresence>
       {!snap.intro && (
@@ -123,7 +128,7 @@ const Customizer = () => {
           </motion.div>
 
           <motion.div
-            className="absolute z-10 top-5 right-5"
+            className="absolute z-10 top-5 flex gap-2 right-5"
             {...fadeAnimation}
           >
             <CustomButton
@@ -131,6 +136,13 @@ const Customizer = () => {
               title="Go Back"
               handleClick={() => (state.intro = true)}
               customStyles="w-fit px-4 py-2.5 font-bold text-sm"
+            />
+            {/* Download Button */}
+            <CustomButton
+              type={"download"} // Set type to "download"
+              title="Download"
+              customStyles="w-fit px-4 py-2.5 font-bold text-sm bg-blue-500 text-white rounded-md flex items-center gap-2"
+              handleClick={handleDownload}
             />
           </motion.div>
 
